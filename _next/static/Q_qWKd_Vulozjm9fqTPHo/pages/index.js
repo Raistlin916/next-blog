@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{RNiq:function(n,t,e){"use strict";e.r(t),e.d(t,"default",function(){return o});var u=e("q1tI"),i=e.n(u);function o(){return i.a.createElement("div",null,"home")}},vlRD:function(n,t,e){(window.__NEXT_P=window.__NEXT_P||[]).push(["/",function(){var n=e("RNiq");return{page:n.default||n}}])}},[["vlRD",1,0]]]);
