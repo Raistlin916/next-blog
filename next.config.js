@@ -10,12 +10,14 @@ const withMDX = require('@zeit/next-mdx')({
   extension: /.mdx?$/
 })
 const basePath = process.env.NEXT_ENV === 'production' ? '/next-blog' : ''
+
 module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   assetPrefix: basePath,
   publicRuntimeConfig: {
     basePath,
-    articles
+    articles,
+    blogTitle: 'Blog Title'
   },
   webpack(config) {
     config.resolve.alias['pages'] = path.join(__dirname, 'pages')

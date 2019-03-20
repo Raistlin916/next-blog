@@ -18,5 +18,11 @@
     "react-dom": "^16.8.4",
     "typography": "^0.16.19",
     "typography-theme-alton": "^0.16.19"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-react": "^7.12.4"
   }
 }

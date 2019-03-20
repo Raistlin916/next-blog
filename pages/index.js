@@ -3,16 +3,19 @@ import Link from 'common/Link'
 
 export default function IndexPage() {
   const { publicRuntimeConfig } = getConfig()
+  const { articles, blogTitle } = publicRuntimeConfig
   return (
     <div>
+      <h1>{blogTitle}</h1>
       <ul>
-        {publicRuntimeConfig.articles.map((item, index) => (
+        {articles.map((item, index) => (
           <li key={index}>
-            <Link href={item}>{item}</Link>
+            <Link href={item} prefetch>
+              {item}
+            </Link>
           </li>
         ))}
       </ul>
-      home{JSON.stringify(getConfig())}
     </div>
   )
 }
