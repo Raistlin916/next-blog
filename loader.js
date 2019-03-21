@@ -1,15 +1,10 @@
 const fm = require('front-matter')
 
-module.exports = async function(content) {
-  const callback = this.async()
-
+module.exports = function(content) {
   const output = fm(content)
-  const attributes = []
-  for (const [key, value] of Object.entries(output.attributes)) {
-    attributes.push(`export const ${key} = ${JSON.stringify(value)}`)
-  }
+  const attributes = Object.entries(output.attributes).map(([key, value]) => {
+    return `export const ${key} = ${JSON.stringify(value)}`
+  })
 
-  const results = `${output.body}\n\n${attributes.join('\n\n')}\n`
-
-  return callback(null, results)
+  return `${output.body}\n\n${attributes.join('\n\n')}\n`
 }
