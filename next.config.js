@@ -1,10 +1,17 @@
 const path = require('path')
+const fm = require('front-matter')
 const glob = require('glob')
+const fs = require('fs')
 
 const files = glob.sync('pages/**/*.{md,mdx}')
-const articles = files.map(filename =>
-  filename.replace(/^pages/, '').replace(/\.\w+$/, '')
-)
+const articles = files.map(filename => {
+  const content = fs.readFileSync(filename)
+  const path = filename.replace(/^pages/, '').replace(/\.\w+$/, '')
+  return {
+    path,
+    attributes: fm(String(content)).attributes
+  }
+})
 
 const basePath = process.env.NEXT_ENV === 'production' ? '/next-blog' : ''
 

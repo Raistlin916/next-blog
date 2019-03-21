@@ -10,9 +10,7 @@ export default function IndexPage() {
       <ul>
         {articles.map((item, index) => (
           <li key={index}>
-            <Link href={item}>
-              {item}
-            </Link>
+            <Link href={item.path}>{item.attributes.title || 'untitled'}</Link>
           </li>
         ))}
       </ul>
