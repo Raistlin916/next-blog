@@ -10,12 +10,18 @@ export default function IndexPage() {
       <ul>
         {articles.map((item, index) => (
           <li key={index}>
-            <Link href={item} prefetch>
+            <Link href={item}>
               {item}
             </Link>
           </li>
         ))}
       </ul>
+
+      <style jsx>{`
+        ul {
+          list-style-type: none;
+        }
+      `}</style>
     </div>
   )
 }

@@ -6,22 +6,33 @@ const articles = files.map(filename =>
   filename.replace(/^pages/, '').replace(/\.\w+$/, '')
 )
 
-const withMDX = require('@zeit/next-mdx')({
-  extension: /.mdx?$/
-})
 const basePath = process.env.NEXT_ENV === 'production' ? '/next-blog' : ''
 
-module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+module.exports = {
   assetPrefix: basePath,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   publicRuntimeConfig: {
     basePath,
     articles,
     blogTitle: 'Blog Title'
   },
-  webpack(config) {
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.mdx?$/,
+      use: [
+        options.defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader'
+        },
+        {
+          loader: require.resolve('./loader')
+        }
+      ]
+    })
+
     config.resolve.alias['pages'] = path.join(__dirname, 'pages')
     config.resolve.alias['common'] = path.join(__dirname, 'common')
+
     return config
   }
-})
+}

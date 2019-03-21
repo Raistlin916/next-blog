@@ -16,10 +16,16 @@ export default class BlogDocument extends Document {
           <title>{blogTitle}</title>
         </Head>
         <body>
-          <div style={{ width: 960, margin: '0 auto' }}>
+          <div className="content">
             <Main />
           </div>
           <NextScript />
+          <style jsx>{`
+            .content {
+              width: 960px;
+              margin: 0 auto;
+            }
+          `}</style>
         </body>
       </Html>
     )
