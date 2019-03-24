@@ -7,4 +7,4 @@ date: 2019/03/24
 
 ## first page
 
-![shiba](test-1-2/shiba.png)
+![shiba](static/shiba.png)
