@@ -6,7 +6,10 @@ const fs = require('fs')
 const files = glob.sync('pages/**/*.{md,mdx}')
 const articles = files.map(filename => {
   const content = fs.readFileSync(filename)
-  const path = filename.replace(/^pages/, '').replace(/\.\w+$/, '')
+  const path = filename
+    .replace(/^pages/, '')
+    .replace(/\.[^.]+$/, '')
+    .replace(/\/index$/, '')
   return {
     path,
     attributes: fm(String(content)).attributes
