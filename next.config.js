@@ -2,6 +2,7 @@ const path = require('path')
 const fm = require('front-matter')
 const glob = require('glob')
 const fs = require('fs')
+const withImages = require('next-images')
 
 const files = glob.sync('pages/**/*.{md,mdx}')
 const articles = files.map(filename => {
@@ -18,7 +19,7 @@ const articles = files.map(filename => {
 
 const basePath = process.env.NEXT_ENV === 'production' ? '/next-blog' : ''
 
-module.exports = {
+module.exports = withImages({
   assetPrefix: basePath,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   publicRuntimeConfig: {
@@ -45,4 +46,4 @@ module.exports = {
 
     return config
   }
-}
+})

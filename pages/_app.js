@@ -1,7 +1,9 @@
 import App, { Container } from 'next/app'
 import Head from 'next/head'
 import getConfig from 'next/config'
+import dynamic from 'next/dynamic'
 import React from 'react'
+import shiba from './test-1-2/shiba.png'
 
 export default class BlogApp extends App {
   render() {
@@ -13,7 +15,9 @@ export default class BlogApp extends App {
         <Head>
           <title>{blogTitle}</title>
         </Head>
-        <Component {...pageProps} />
+        <Component {...pageProps} components={{ img: props => {
+          return <img {...props} src={shiba} />
+        }}} />
       </Container>
     )
   }
