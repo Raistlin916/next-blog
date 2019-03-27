@@ -32,17 +32,24 @@ export default class BlogApp extends App {
         <Head>
           <title>{blogTitle}</title>
         </Head>
-        <Component
-          {...pageProps}
-          components={{
-            img: props => {
-              const src = images[path.join(pathname, props.src).replace(/\\/g, '/')]
-              return (
-                <img {...props} src={src} />
-              )
-            }
-          }}
-        />
+        <div className="content">
+          <Component
+            {...pageProps}
+            components={{
+              img: props => {
+                const src =
+                  images[path.join(pathname, props.src).replace(/\\/g, '/')]
+                return <img {...props} src={src} />
+              }
+            }}
+          />
+        </div>
+        <style jsx>{`
+          .content {
+            width: 960px;
+            margin: 0 auto;
+          }
+        `}</style>
       </Container>
     )
   }

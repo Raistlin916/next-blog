@@ -13,16 +13,8 @@ export default class BlogDocument extends Document {
           <style dangerouslySetInnerHTML={{ __html: typography.toString() }} />
         </Head>
         <body>
-          <div className="content">
-            <Main />
-          </div>
+          <Main />
           <NextScript />
-          <style jsx>{`
-            .content {
-              width: 960px;
-              margin: 0 auto;
-            }
-          `}</style>
         </body>
       </Html>
     )
