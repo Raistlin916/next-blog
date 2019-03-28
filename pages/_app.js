@@ -25,7 +25,8 @@ export default class BlogApp extends App {
   render() {
     const { Component, pageProps, pathname } = this.props
     const { publicRuntimeConfig } = getConfig()
-    const { blogTitle } = publicRuntimeConfig
+    const { blogTitle, articles } = publicRuntimeConfig
+    const isArticle = !!articles.find(item => item.path === pathname)
 
     return (
       <Container>
@@ -33,6 +34,8 @@ export default class BlogApp extends App {
           <title>{blogTitle}</title>
         </Head>
         <div className="content">
+          {isArticle ? 1: 0}
+          {pathname}
           <Component
             {...pageProps}
             components={{
