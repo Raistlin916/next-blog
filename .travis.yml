@@ -4,11 +4,11 @@ node_js:
   - "node"
 
 before_script:
-  - npm install
+  - yarn
 
 script:
-  - npm run build
-  - npm run export
+  - yarn build
+  - yarn export
 
 after_success:
   - touch ./out/.nojekyll
