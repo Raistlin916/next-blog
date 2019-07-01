@@ -16,7 +16,7 @@
     "front-matter": "^3.0.2",
     "glob": "^7.1.4",
     "next": "^8.1.0",
-    "next-images": "^1.1.2",
+    "next-images": "^1.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "typography": "^0.16.19",

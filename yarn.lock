@@ -3654,7 +3654,7 @@ neo-async@^2.5.0:
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fneo-async%2Fdownload%2Fneo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha1-rCetpmFn+ohJpq3dg39rGJrSCBw=
 
-next-images@^1.1.2:
+next-images@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/next-images/download/next-images-1.1.1.tgz#f756de42234908ce4af038a310689be7ab0666dd"
   integrity sha1-91beQiNJCM5K8DijEGib56sGZt0=
