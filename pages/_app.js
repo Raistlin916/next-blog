@@ -1,8 +1,14 @@
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import Head from 'next/head'
 import getConfig from 'next/config'
+import { useRouter } from 'next/router'
 import React from 'react'
+import { MDXProvider } from '@mdx-js/react'
 import path from 'path'
+import Typography from 'typography'
+import AltonTheme from 'typography-theme-alton'
+
+const typography = new Typography(AltonTheme)
 
 function importAll(r) {
   let images = {}
@@ -13,47 +19,41 @@ function importAll(r) {
 }
 const images = importAll(require.context('./', true, /\.(png|jpe?g|svg)$/))
 
-export default class BlogApp extends App {
-  static async getInitialProps({ Component, ctx, router }) {
-    let pageProps = {}
+const Image = ({ src, ...rest }) => {
+  const router = useRouter()
+  src = images[path.join(router.pathname, src).replace(/\\/g, '/')]
+  console.log(router.pathname, src, images)
+  return <img {...rest} src={src} />
+}
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-    return { pageProps, pathname: router.pathname }
-  }
+export default class BlogApp extends App {
   render() {
-    const { Component, pageProps, pathname } = this.props
+    const { Component, pageProps } = this.props
     const { publicRuntimeConfig } = getConfig()
-    const { blogTitle, articles } = publicRuntimeConfig
-    const isArticle = !!articles.find(item => item.path === pathname)
+    const { blogTitle } = publicRuntimeConfig
+    const components = {
+      img: props => <Image {...props} />
+    }
 
     return (
-      <Container>
+      <>
         <Head>
           <title>{blogTitle}</title>
+          <style dangerouslySetInnerHTML={{ __html: typography.toString() }} />
         </Head>
         <div className="content">
-          {isArticle ? 1: 0}
-          {pathname}
-          <Component
-            {...pageProps}
-            components={{
-              img: props => {
-                const src =
-                  images[path.join(pathname, props.src).replace(/\\/g, '/')]
-                return <img {...props} src={src} />
-              }
-            }}
-          />
+          <MDXProvider components={components}>
+            <Component {...pageProps} />
+          </MDXProvider>
         </div>
         <style jsx>{`
           .content {
             width: 960px;
             margin: 0 auto;
+            padding: 10px 20px;
           }
         `}</style>
-      </Container>
+      </>
     )
   }
 }
